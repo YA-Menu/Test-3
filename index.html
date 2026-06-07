@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو المطعم</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .menu-item { background: white; border-radius: 10px; padding: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
+        .menu-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+        .menu-item h3 { margin: 10px 0 5px; color: #333; }
+        .menu-item p { color: #666; font-size: 14px; }
+        .menu-item .price { font-weight: bold; color: #e63946; font-size: 18px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center;">قائمة الطعام</h1>
+    <div class="menu-grid" id="menu-container">
+        <!-- الأطباق راح تنزل هني تلقائياً بواسطة الجافاسكربت -->
+    </div>
+
+    <script>
+        // سحب البيانات من ملف JSON
+        fetch('menu-data.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('menu-container');
+                data.items.forEach(item => {
+                    const dish = document.createElement('div');
+                    dish.className = 'menu-item';
+                    dish.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <div class="price">${item.price}</div>
+                    `;
+                    container.appendChild(dish);
+                });
+            })
+            .catch(error => console.error('Error loading menu:', error));
+    </script>
+</body>
+</html>
