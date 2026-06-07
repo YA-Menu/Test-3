@@ -1,8 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main # أو اسم البرانش الأساسي مالك
+  name: github
+  repo: ACCOUNT_NAME/REPO_NAME  # اكتب هني اسم حسابك في جيت هب واسم المستودع مالك
+  branch: main                  # اسم البرانش الأساسي مالك (غالباً main)
 
-media_folder: "images" # وين تنحفظ الصور اللي يرفعها العميل
+media_folder: "images"
 public_folder: "images"
 
 collections:
