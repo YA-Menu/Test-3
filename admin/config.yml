@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main # أو اسم البرانش الأساسي مالك
+
+media_folder: "images" # وين تنحفظ الصور اللي يرفعها العميل
+public_folder: "images"
+
+collections:
+  - name: "menu"
+    label: "إدارة المنيو"
+    files:
+      - file: "menu-data.json"
+        name: "menu_items"
+        label: "قائمة الأطباق"
+        fields:
+          - name: items
+            label: الأطباق
+            widget: list
+            fields:
+              - {label: "اسم الطبق", name: "title", widget: "string"}
+              - {label: "الوصف", name: "description", widget: "string", required: false}
+              - {label: "السعر", name: "price", widget: "string"}
+              - {label: "الصورة", name: "image", widget: "image"}
